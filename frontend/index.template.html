@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title> MPC Shamir's Secret Sharing Scheme </title>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; form-action 'none'; connect-src data:; style-src self 'nonce-c3R5bGUtMQ=='; script-src self 'unsafe-eval' 'nonce-c2NyaXB0LTE='">
+    <style nonce="c3R5bGUtMQ==">
+        INLINE_STYLE_PLACEHOLDER
+    </style>
+    <script async nonce="c2NyaXB0LTE=">
+        INLINE_WASM_PLACEHOLDER
+    </script>
+</head>
+
+<body>
+
+<div id="page">
+    <h1>
+        MPC Shamir's Secret Sharing Scheme
+    </h1>
+    <p>
+        Share your secret with a cryptographically secure method. All running locally in your browser. Your secrets never leave your machine!
+    </p>
+
+    <div id="securityAlerts">
+        <p id="notOffline">Your browser is online. Please disconnect from your network to use MPC Shamir's Secret Sharing Scheme in a safer way.</p>
+        <p id="notFileSaved">You are running mpcsss from a webserver, this is insecure. Please save the webpage (Ctrl+S) locally and open this file.</p>
+    </div>
+
+    <nav>
+        <ul>
+            <li class="active" data-section='encrypt'>Encrypt</li>
+            <li data-section='decrypt'>Decrypt</li>
+            <li data-section='info'>Info</li>
+        </ul>
+    </nav>
+
+    <div id="error">
+        <button></button>
+        <p></p>
+    </div>
+
+    <section id="encrypt">
+        <div>
+            <div>
+                <label for="encryptThreshold">Minimum required shares:</label>
+                <input autocomplete="off" type="number" value="2" min="2" id="encryptThreshold" placeholder="Minimum required shares"/>
+            </div>
+            <div>
+                <label for="encryptShares">Shares:</label>
+                <input autocomplete="off" value="3" min="2" type="number" id="encryptShares" placeholder="Shares"/>
+            </div>
+            <div>
+                <input autocomplete="off" type="checkbox" id="encryptUseAES"/>
+            </div>
+        </div>
+        <textarea autocomplete="off" id="encryptInput" placeholder="Whatever message / binary data you want."></textarea>
+        <div id="encryptOutput"></div>
+    </section>
+
+    <section id="decrypt">
+        <div>
+            <div>
+                <label for="decryptShares">Shares:</label>
+                <input id="decryptShares" value="2" min="2" type="number" placeholder="Shares"/>
+            </div>
+        </div>
+        <div id="decryptInputs"></div>
+        <textarea autocomplete="off" id="decryptOutput" readonly placeholder="Your decrypted output"></textarea>
+    </section>
+
+    <section id="info">
+        <div>
+            <h2>Videos</h2>
+            <p>
+                The following youtube videos explain you more about
+                <a href="https://en.wikipedia.org/wiki/Shamir%27s_Secret_Sharing" target="_blank">
+                    Shamir's Secret Sharing:
+                </a>
+            </p>
+            <ul>
+                <li>
+                    <a href="https://www.youtube-nocookie.com/embed/TQ-DsEZBuQY" target="_blank">
+                        What is Key Sharding? Shamir’s Secret Sharing Explained
+                    </a>
+                    (<b>Easy</b>)
+                </li>
+                <li>
+                    <a href="https://www.youtube-nocookie.com/embed/rWPZoz0aux4" target="_blank">
+                        Shamir's Secret Sharing - Solution and alternative to Lagrange
+                    </a>
+                    (<b>More in-depth</b>)
+                </li>
+            </ul>
+        </div>
+        <div>
+            <h2>About</h2>
+            <p>MPC Shamir's Secret Sharing Scheme is open source and provided as it is. You can find the code on
+                <a href="https://github.com/guyuxiang/mpcsss" target="_blank">Github</a>
+                and this website works completely offline. Save it to your computer (Ctrl+S) in order to not lose access to the
+                tool in case this website will be down at any point in the future.
+            </p>
+        </div>
+    </section>
+
+</div>
+
+</body>
+</html>

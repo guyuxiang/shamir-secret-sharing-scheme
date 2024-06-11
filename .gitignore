@@ -1,0 +1,5 @@
+.idea
+*.iml
+wasmPayload.js
+build/
+frontend/js/wasm_exec.js

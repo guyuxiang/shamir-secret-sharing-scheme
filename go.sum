@@ -1,0 +1,6 @@
+github.com/ethereum/go-ethereum v1.14.3 h1:5zvnAqLtnCZrU9uod1JCvHWJbPMURzYFHfc2eHz4PHA=
+github.com/ethereum/go-ethereum v1.14.3/go.mod h1:1STrq471D0BQbCX9He0hUj4bHxX2k6mt5nOQJhDNOJ8=
+github.com/hashicorp/vault v1.13.12 h1:wT/kN6rwp+CBKLRdH8XqGpSRaoC2kQJXZbl9D60f30I=
+github.com/hashicorp/vault v1.13.12/go.mod h1:Ep9Gp8izp31JvybinVDRp7Api6JFq525BtBBPhWtku8=
+github.com/pkg/errors v0.9.1 h1:FEBLx1zS214owpjy7qsBeixbURkuhQAwrK5UwLGTwt4=
+github.com/pkg/errors v0.9.1/go.mod h1:bwawxfHBFNV+L2hUp1rHADufV3IMtnDRdf1r5NINEl0=
