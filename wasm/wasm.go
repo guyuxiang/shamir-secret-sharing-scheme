@@ -73,14 +73,14 @@ func distributeShares(this js.Value, i []js.Value) interface{} {
 	}
 
 	if len(inBytes) != 64 {
-		return js.ValueOf("Private key input must be 64 characters in length")
+		return js.ValueOf("Secret input must be 64 characters in length")
 	}
 
 	_, err = hex.DecodeString(string(inBytes))
 	if byteErr, ok := err.(hex.InvalidByteError); ok {
-		return js.ValueOf(fmt.Sprintf("invalid hex character %q in private key", byte(byteErr)))
+		return js.ValueOf(fmt.Sprintf("invalid hex character %q in secret", byte(byteErr)))
 	} else if err != nil {
-		return js.ValueOf("invalid hex data for private key")
+		return js.ValueOf("invalid hex data for secret")
 	}
 
 	inBigInt := new(big.Int)
