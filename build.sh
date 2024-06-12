@@ -6,7 +6,7 @@ mkdir build || true
 
 echo "[1] Build wasm"
 wasmPayloadFile=$(mktemp)
-trap 'rm -f $wasmPayloadFile' ERR EXIT
+#trap 'rm -f $wasmPayloadFile' ERR EXIT
 GOOS=js GOARCH=wasm go build -ldflags="-s -w" -o "$wasmPayloadFile" wasm/wasm.go
 
 echo "[2] Pack wasm into javascript"
