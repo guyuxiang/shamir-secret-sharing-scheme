@@ -32,7 +32,7 @@ func recoverShares(this js.Value, i []js.Value) interface{} {
 
 	key, err := shamirSecretSharing.SharesCombine(inStrings)
 	if err != nil {
-		return js.ValueOf("Could not combine shares" + err.Error())
+		return js.ValueOf("Could not combine shares: " + err.Error())
 	}
 	js.Global().Get("console").Call("log", key)
 	return js.ValueOf(base64.StdEncoding.EncodeToString([]byte(key)))

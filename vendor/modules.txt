@@ -1,4 +1,4 @@
-# git.hrlyit.com/lls-blockchain/go-lib/secrets/shamirSecretSharing v0.0.0-20240704082952-bfa5aa0df490
+# git.hrlyit.com/lls-blockchain/go-lib/secrets/shamirSecretSharing v0.0.0-20240704123023-3c4c0ca8b61d
 ## explicit; go 1.21.3
 git.hrlyit.com/lls-blockchain/go-lib/secrets/shamirSecretSharing
 # github.com/dlclark/regexp2 v1.7.0
