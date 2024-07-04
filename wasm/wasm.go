@@ -4,8 +4,7 @@ import (
 	"encoding/base64"
 	"encoding/hex"
 	"fmt"
-	"github.com/guyuxiang/mpcsss"
-	"math/big"
+	"git.hrlyit.com/lls-blockchain/go-lib/secrets/shamirSecretSharing"
 	"syscall/js"
 )
 
@@ -31,24 +30,12 @@ func recoverShares(this js.Value, i []js.Value) interface{} {
 		}
 	}
 
-	bigIntshares := make([]*big.Int, len(inStrings))
-
-	for k, v := range inStrings {
-		if len(v) == 0 {
-			continue
-		}
-
-		inBigInt := new(big.Int)
-		inBigInt, ok := inBigInt.SetString(v, 16)
-		if !ok {
-			return js.ValueOf("Could not decode hex string")
-		}
-		bigIntshares[k] = inBigInt
+	key, err := shamirSecretSharing.SharesCombine(inStrings)
+	if err != nil {
+		return js.ValueOf("Could not combine shares" + err.Error())
 	}
-
-	outBigInt := mpcsss.Interpolate(bigIntshares, len(inStrings))
-	return js.ValueOf(base64.StdEncoding.EncodeToString([]byte(outBigInt.Text(16))))
-
+	js.Global().Get("console").Call("log", key)
+	return js.ValueOf(base64.StdEncoding.EncodeToString([]byte(key)))
 }
 
 func distributeShares(this js.Value, i []js.Value) interface{} {
@@ -71,34 +58,17 @@ func distributeShares(this js.Value, i []js.Value) interface{} {
 	if err != nil {
 		return js.ValueOf("Could not decode base64 string: " + err.Error())
 	}
+	js.Global().Get("console").Call("log", fmt.Sprintf("numShares:%d", i[2].Int()))
+	js.Global().Get("console").Call("log", fmt.Sprintf("threshold:%d", i[1].Int()))
 
-	if len(inBytes) != 64 {
-		return js.ValueOf("Secret input must be 64 characters in length")
-	}
-
-	_, err = hex.DecodeString(string(inBytes))
-	if byteErr, ok := err.(hex.InvalidByteError); ok {
-		return js.ValueOf(fmt.Sprintf("invalid hex character %q in secret", byte(byteErr)))
-	} else if err != nil {
-		return js.ValueOf("invalid hex data for secret")
-	}
-
-	inBigInt := new(big.Int)
-	inBigInt, ok := inBigInt.SetString(string(inBytes), 16)
-	if !ok {
-		return js.ValueOf("Could not decode hex string")
-	}
-
-	bigIntShares, err := mpcsss.GenerateShares(inBigInt, i[2].Int(), i[1].Int())
-
+	shares, err := shamirSecretSharing.GenerateShares(string(inBytes), i[1].Int(), i[2].Int())
 	if err != nil {
-		return js.ValueOf("Could not distribute bytes: " + err.Error())
+		return js.ValueOf("Could not distribute string: " + err.Error())
 	}
 
-	hexShares := make([]interface{}, len(bigIntShares))
-	for k, byteShare := range bigIntShares {
-		hexShares[k] = fmt.Sprintf("%s",
-			byteShare.Text(16))
+	hexShares := make([]interface{}, len(shares))
+	for k, share := range shares {
+		hexShares[k] = fmt.Sprintf("%s", share)
 	}
 	return js.ValueOf(hexShares)
 }
