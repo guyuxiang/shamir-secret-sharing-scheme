@@ -1,11 +1,10 @@
-package mpcsss
+package secret
 
 import (
 	"crypto/rand"
 	"fmt"
-	"math/big"
-
 	"github.com/ethereum/go-ethereum/crypto/secp256k1"
+	"math/big"
 )
 
 // GenerateShares generates n shares with a threshold of m to reconstruct the secret.

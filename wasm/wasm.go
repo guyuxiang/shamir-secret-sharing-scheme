@@ -4,7 +4,7 @@ import (
 	"encoding/base64"
 	"encoding/hex"
 	"fmt"
-	"github.com/guyuxiang/mpcsss"
+	"github.com/guyuxiang/shamir-secret-sharing-scheme/secret"
 	"math/big"
 	"syscall/js"
 )
@@ -46,7 +46,7 @@ func recoverShares(this js.Value, i []js.Value) interface{} {
 		bigIntshares[k] = inBigInt
 	}
 
-	outBigInt := mpcsss.Interpolate(bigIntshares, len(inStrings))
+	outBigInt := secret.Interpolate(bigIntshares, len(inStrings))
 	return js.ValueOf(base64.StdEncoding.EncodeToString([]byte(outBigInt.Text(16))))
 
 }
@@ -89,7 +89,7 @@ func distributeShares(this js.Value, i []js.Value) interface{} {
 		return js.ValueOf("Could not decode hex string")
 	}
 
-	bigIntShares, err := mpcsss.GenerateShares(inBigInt, i[2].Int(), i[1].Int())
+	bigIntShares, err := secret.GenerateShares(inBigInt, i[2].Int(), i[1].Int())
 
 	if err != nil {
 		return js.ValueOf("Could not distribute bytes: " + err.Error())
