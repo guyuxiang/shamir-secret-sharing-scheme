@@ -2,7 +2,7 @@ module github.com/guyuxiang/shamir-secret-sharing-scheme
 
 go 1.22.2
 
-require git.hrlyit.com/lls-blockchain/go-lib/secrets/shamirSecretSharing v0.0.0-20240704123023-3c4c0ca8b61d
+require git.hrlyit.com/lls-blockchain/go-lib/secrets/shamirSecretSharing v0.0.0-20240705091105-e6584ff553ea
 
 require (
 	github.com/dlclark/regexp2 v1.7.0 // indirect
