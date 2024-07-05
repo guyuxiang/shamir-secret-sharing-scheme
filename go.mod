@@ -1,4 +1,4 @@
-module github.com/guyuxiang/ShamirSecretSharingScheme
+module github.com/guyuxiang/shamir-secret-sharing-scheme
 
 go 1.22.2
 
